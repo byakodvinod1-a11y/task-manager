@@ -302,32 +302,3 @@ Run frontend tests:
 cd frontend
 npm test
 ```
-
-## 🚀 Future Enhancements
-
-- [ ] Task categories and tags
-- [ ] Search and filter functionality
-- [ ] Task priority levels
-- [ ] User authentication and authorization
-- [ ] Task assignment to users
-- [ ] Notification system for due dates
-- [ ] PostgreSQL database integration
-- [ ] Deployment to cloud platforms (Vercel, Render)
-- [ ] Dark mode support
-- [ ] Export tasks to CSV/PDF
-
-## 📝 License
-
-This project is part of the Accenture Agentic SDLC Fundamentals training program.
-
-## 👥 Contributors
-
-Developed by [Your Name] with AI assistance as part of the Agentic SDLC training.
-
-## 📞 Support
-
-For questions or issues, please contact [your-email@example.com]
-
----
-
-**Acknowledgments**: This project was developed as part of the Accenture Agentic SDLC Fundamentals training program, demonstrating the effective collaboration between human developers and AI tools in modern software development.
