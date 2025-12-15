@@ -204,7 +204,7 @@ Frontend runs at:
 
 ## 🤖 AI Development Process
 
-The project was built with active support from an **Agentic AI assistant (ChatGPT)**, used throughout the SDLC.
+The project was built with active support from an **Agentic AI assistant **, used throughout the SDLC.
 
 ### AI-Assisted Activities
 
