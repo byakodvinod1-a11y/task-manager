@@ -1,280 +1,234 @@
 # Task Manager Web Application
 
-A full-stack web application for managing tasks with CRUD operations, built using React (TypeScript) and Spring Boot, developed with AI assistance.
+A full-stack web application for managing tasks with CRUD operations, built using **React (TypeScript)** and **Spring Boot**, developed with **Agentic AI assistance** and human oversight.
+
+---
 
 ## 📋 Table of Contents
 
 - [Project Overview](#project-overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
 - [Installation & Setup](#installation--setup)
+- [Environment Configuration](#environment-configuration)
 - [API Endpoints](#api-endpoints)
 - [Usage](#usage)
-- [AI Development Process](#ai-development-process)
 - [Testing](#testing)
+- [AI Development Process](#ai-development-process)
 - [Future Enhancements](#future-enhancements)
+
+---
 
 ## 🎯 Project Overview
 
-This Task Manager application allows users to efficiently manage their tasks through a modern web interface. Users can create, read, update, and delete tasks with various statuses and due dates.  
-The application was developed as part of the **Agentic SDLC Fundamentals** training program to demonstrate practical AI-assisted development.
+The **Task Manager Web Application** enables users to manage tasks through a modern web interface.
+Users can create, view, update, delete, and organize tasks with different statuses and due dates.
+
+This project was developed as part of the **Agentic SDLC Fundamentals** training program to demonstrate **AI-assisted, test-driven full-stack development** following industry best practices.
 
 ---
 
 ## ✨ Features
 
 ### Core Functionality
-- **Create Tasks**: Add new tasks with title, description, status, and due date  
-- **View Tasks**: Display all tasks in a structured table  
-- **Update Tasks**: Modify existing tasks  
-- **Delete Tasks**: Remove tasks you no longer need  
-- **Status Management**: Track tasks with TODO, IN_PROGRESS, and DONE  
+- Create tasks with title, description, status, and due date
+- View all tasks in a structured table
+- Update tasks (edit form and inline status change)
+- Delete tasks with confirmation
+- Track task status: TODO, IN_PROGRESS, DONE
 
-### Additional Features
-- Client-side + server-side validation  
-- Sorting by **status** or **due date**  
-- Clean and responsive UI  
-- Error banner for backend errors  
-- Well-aligned buttons and layout  
+### Quality & UX
+- Client-side and server-side validation
+- Backend service layer for business logic
+- Centralized exception handling
+- Error banner for backend/API errors
+- Sorting by status or due date
+- Clean and responsive UI
+- Environment-based configuration
 
 ---
 
 ## 🔧 Tech Stack
 
 ### Frontend
-- **React 19 (TypeScript)**
-- **Vite (Rolldown build)**
-- **Custom CSS**
-- **Fetch API**
+- React 19
+- TypeScript
+- Vite (Rolldown build)
+- Fetch API
+- Vitest + React Testing Library
 
 ### Backend
-- **Spring Boot 3.x**
-- **Java 17**
-- **Maven**
-- **H2 In-Memory Database**
-- **Spring Data JPA**
-- **Bean Validation**
+- Spring Boot 3.x
+- Java 17
+- Maven
+- Spring Data JPA
+- H2 In-Memory Database
+- Bean Validation
 
-### Architecture
-- REST API  
-- MVC structure  
-- CORS enabled  
+---
+
+## 🏗 Architecture
+
+```
+Frontend (React + TS)
+        ↓ REST API
+Controller Layer
+        ↓
+Service Layer
+        ↓
+Repository Layer
+        ↓
+H2 Database
+```
 
 ---
 
 ## 📁 Project Structure
 
-### Frontend Structure
+### Frontend
 ```
 frontend/
 ├── src/
 │   ├── components/
 │   │   ├── TaskForm.tsx
-│   │   └── TaskList.tsx
+│   │   ├── TaskList.tsx
+│   │   ├── TaskForm.test.tsx
+│   │   └── TaskList.test.tsx
 │   ├── api.ts
+│   ├── types.ts
 │   ├── App.tsx
-│   ├── App.css
-│   ├── main.tsx
-│   └── types.ts
-├── index.html
-└── package.json
+│   └── main.tsx
 ```
 
-### Backend Structure
+### Backend
 ```
 backend/
-└── src/main/java/org/accenture/taskmanager/
-    ├── controller/TaskController.java
-    ├── model/Task.java
-    ├── model/TaskStatus.java
-    ├── repository/TaskRepository.java
-    ├── exception/GlobalExceptionHandler.java
-    └── TaskManagerApplication.java
+├── src/main/java/org/accenture/taskmanager/
+│   ├── controller/
+│   ├── service/
+│   ├── repository/
+│   ├── model/
+│   └── exception/
+└── src/test/java/org/accenture/taskmanager/
 ```
 
 ---
 
 ## 📋 Prerequisites
 
-- **Node.js**: v18+  
-- **npm**: v9+  
-- **Java**: JDK 17  
-- **Maven**: 3.6+  
-- **Git**
+- Node.js 18+
+- npm 9+
+- Java JDK 17
+- Maven 3.6+
 
 ---
 
 ## 🚀 Installation & Setup
 
-### Backend Setup
+### Backend
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd task-manager/backend
-   ```
+```bash
+cd backend
+mvn clean install
+mvn spring-boot:run
+```
 
-2. Build:
-   ```bash
-   mvn clean install
-   ```
+Backend runs at `http://localhost:8080`
 
-3. Run:
-   ```bash
-   mvn spring-boot:run
-   ```
+H2 Console:
+- URL: http://localhost:8080/h2-console
+- JDBC URL: jdbc:h2:mem:taskdb
+- User: sa
+- Password: (empty)
 
-Backend runs at:  
-👉 `http://localhost:8080`
+### Frontend
 
-#### Access H2 Console  
-- URL: `http://localhost:8080/h2-console`  
-- JDBC URL: `jdbc:h2:mem:taskdb`  
-- Username: `sa`  
-- Password: *(empty)*  
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs at `http://localhost:5173`
 
 ---
 
-### Frontend Setup
+## 🌍 Environment Configuration
 
-1. Navigate:
-   ```bash
-   cd task-manager/frontend
-   ```
+Frontend API URL is configured using environment variables:
 
-2. Install:
-   ```bash
-   npm install
-   ```
-
-3. Launch development server:
-   ```bash
-   npm run dev
-   ```
-
-Frontend runs at:  
-👉 `http://localhost:5173`
+```
+VITE_API_URL=http://localhost:8080/api/tasks
+```
 
 ---
 
 ## 🔌 API Endpoints
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/tasks` | Retrieve all tasks |
-| GET | `/api/tasks/{id}` | Retrieve a task by ID |
-| POST | `/api/tasks` | Create a new task |
-| PUT | `/api/tasks/{id}` | Update a task |
-| DELETE | `/api/tasks/{id}` | Delete a task |
-
-### Task JSON Example
-```json
-{
-  "id": 1,
-  "title": "Complete documentation",
-  "description": "Write README for assignment",
-  "status": "IN_PROGRESS",
-  "dueDate": "2025-12-20"
-}
-```
-
----
-
-## 💻 Usage
-
-### Create a Task
-- Fill out the form  
-- Click **Create**  
-
-### Edit a Task
-- Click **Edit**  
-- Update fields  
-- Click **Save**  
-
-### Delete a Task
-- Click **Delete**  
-- Confirm action  
-
-### Sort Tasks
-- Choose from: None / Status / Due date  
-
----
-
-## 🤖 AI Development Process
-
-The project was built with active support from an **Agentic AI assistant **, used throughout the SDLC.
-
-### AI-Assisted Activities
-
-#### 1. Architecture & Design
-- Suggested API structure  
-- Proposed frontend component design  
-- Guided folder structure  
-
-#### 2. Code Generation
-- Generated React components  
-- Generated Spring Boot CRUD controller, model, repository  
-- Assisted with validation  
-
-#### 3. Debugging
-- Solved TypeScript import/export issues  
-- Fixed Vite path resolution errors  
-- Resolved Spring Boot `@PathVariable` error  
-- Helped adjust UI alignment  
-
-#### 4. Documentation
-- Helped structure this README  
-- Suggested installation & setup steps  
-
-### Benefits of AI Assistance
-- Faster prototyping  
-- Improved debugging speed  
-- Cleaner documentation  
-- Reduced development time  
-
-### Human Oversight
-- Reviewing AI-generated code  
-- Managing integrations  
-- Ensuring UX consistency  
-- Validating functional requirements  
+|------|---------|-------------|
+| GET | /api/tasks | Get all tasks |
+| GET | /api/tasks/{id} | Get task by ID |
+| POST | /api/tasks | Create task |
+| PUT | /api/tasks/{id} | Update task |
+| DELETE | /api/tasks/{id} | Delete task |
 
 ---
 
 ## 🧪 Testing
 
-### Backend
-Run:
+### Backend Tests
+- Repository tests (DataJpaTest)
+- Service unit tests (Mockito)
+- Controller tests (WebMvcTest)
+- Integration test (TestRestTemplate)
+
 ```bash
 cd backend
 mvn test
 ```
 
-Covers:
-- Repository CRUD operations  
-- Validation behavior  
+### Frontend Tests
+- Component tests for TaskForm and TaskList
+- Validation and interaction coverage
 
-### Frontend
 ```bash
-npm run lint
+cd frontend
+npm test
+npm run test -- --coverage
 ```
+
+---
+
+## 🤖 AI Development Process
+
+Agentic AI was used throughout the SDLC for:
+
+- Architecture guidance
+- Code generation and refactoring
+- Test strategy design
+- Debugging TypeScript and Spring Boot issues
+- Improving documentation quality
+
+Human oversight ensured correctness, security, and maintainability.
 
 ---
 
 ## 🚀 Future Enhancements
 
-- [ ] Task categories  
-- [ ] Search & filtering  
-- [ ] Priority levels  
-- [ ] Dark mode  
-- [ ] PostgreSQL support  
-- [ ] Authentication  
-- [ ] Deployment (Vercel/Render)  
+- Authentication & authorization
+- Task categories and priorities
+- Search and filtering
+- Dark mode
+- PostgreSQL support
+- Docker & CI/CD pipeline
 
 ---
 
-## 👥 Contributors
+## 👤 Author
 
-Developed by **Vinod Byakod**  
-With AI collaboration using **Cloude (Agentic AI)**.
+**Vinod Byakod**  
+Developed with Agentic AI assistance.
