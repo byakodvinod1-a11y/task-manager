@@ -17,7 +17,7 @@ public class TaskService {
 <span class="fc" id="L17">  }</span>
 
   public List&lt;Task&gt; findAll() {
-<span class="nc" id="L20">    return repository.findAll();</span>
+<span class="fc" id="L20">    return repository.findAll();</span>
   }
 
   public Task findById(Long id) {
@@ -30,17 +30,17 @@ public class TaskService {
   }
 
   public Task update(Long id, Task updated) {
-<span class="nc" id="L33">    Task existing = findById(id);</span>
-<span class="nc" id="L34">    existing.setTitle(updated.getTitle());</span>
-<span class="nc" id="L35">    existing.setDescription(updated.getDescription());</span>
-<span class="nc" id="L36">    existing.setStatus(updated.getStatus());</span>
-<span class="nc" id="L37">    existing.setDueDate(updated.getDueDate());</span>
-<span class="nc" id="L38">    return repository.save(existing);</span>
+<span class="fc" id="L33">    Task existing = findById(id);</span>
+<span class="fc" id="L34">    existing.setTitle(updated.getTitle());</span>
+<span class="fc" id="L35">    existing.setDescription(updated.getDescription());</span>
+<span class="fc" id="L36">    existing.setStatus(updated.getStatus());</span>
+<span class="fc" id="L37">    existing.setDueDate(updated.getDueDate());</span>
+<span class="fc" id="L38">    return repository.save(existing);</span>
   }
 
   public void delete(Long id) {
-<span class="nc bnc" id="L42" title="All 2 branches missed.">    if (!repository.existsById(id)) throw new TaskNotFoundException(id);</span>
-<span class="nc" id="L43">    repository.deleteById(id);</span>
-<span class="nc" id="L44">  }</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">    if (!repository.existsById(id)) throw new TaskNotFoundException(id);</span>
+<span class="fc" id="L43">    repository.deleteById(id);</span>
+<span class="fc" id="L44">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

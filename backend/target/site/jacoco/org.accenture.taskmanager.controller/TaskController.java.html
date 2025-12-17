@@ -40,7 +40,7 @@ public class TaskController {
     @PutMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Task&gt; update(@PathVariable Long id,
                                        @Valid @RequestBody Task updated) {
-<span class="nc" id="L43">        return ResponseEntity.ok(service.update(id, updated));</span>
+<span class="fc" id="L43">        return ResponseEntity.ok(service.update(id, updated));</span>
     }
 
     @DeleteMapping(&quot;/{id}&quot;)
