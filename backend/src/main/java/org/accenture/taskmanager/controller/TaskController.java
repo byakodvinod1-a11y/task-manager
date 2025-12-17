@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:5174") // adjust if frontend runs elsewhere
+@CrossOrigin(origins = "http://localhost:5173") // adjust if frontend runs elsewhere
 public class TaskController {
 
     private final TaskRepository taskRepository;
