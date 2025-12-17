@@ -1,1 +1,4 @@
+org/accenture/taskmanager/TaskApiIntegrationTest.class
+org/accenture/taskmanager/TaskControllerTest.class
+org/accenture/taskmanager/TaskServiceTest.class
 org/accenture/taskmanager/TaskRepositoryTest.class

@@ -1,6 +1,10 @@
+org/accenture/taskmanager/exception/TaskNotFoundException.class
+org/accenture/taskmanager/model/Task.class
+org/accenture/taskmanager/exception/GlobalExceptionHandler$ApiError.class
 org/accenture/taskmanager/repository/TaskRepository.class
 org/accenture/taskmanager/TaskManagerApplication.class
-org/accenture/taskmanager/model/Task.class
+org/accenture/taskmanager/service/TaskService.class
 org/accenture/taskmanager/exception/GlobalExceptionHandler.class
+org/accenture/taskmanager/config/CorsConfig.class
 org/accenture/taskmanager/controller/TaskController.class
 org/accenture/taskmanager/model/TaskStatus.class

@@ -1,8 +1,9 @@
 package org.accenture.taskmanager.controller;
 
-import org.accenture.taskmanager.model.Task;
-import org.accenture.taskmanager.repository.TaskRepository;
 import jakarta.validation.Valid;
+import org.accenture.taskmanager.model.Task;
+import org.accenture.taskmanager.service.TaskService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,51 +14,38 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173") // adjust if frontend runs elsewhere
 public class TaskController {
 
-    private final TaskRepository taskRepository;
+    private final TaskService service;
 
-    public TaskController(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
+    public TaskController(TaskService service) {
+        this.service = service;
     }
 
     @GetMapping
     public List<Task> getAll() {
-        return taskRepository.findAll();
+        return service.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> getById(@PathVariable Long id) {
-        return taskRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping
     public ResponseEntity<Task> create(@Valid @RequestBody Task task) {
         task.setId(null); // ensure new
-        return ResponseEntity.ok(taskRepository.save(task));
+        Task created = service.create(task);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> update(@PathVariable("id") Long id,
+    public ResponseEntity<Task> update(@PathVariable Long id,
                                        @Valid @RequestBody Task updated) {
-        return taskRepository.findById(id)
-                .map(existing -> {
-                    existing.setTitle(updated.getTitle());
-                    existing.setDescription(updated.getDescription());
-                    existing.setStatus(updated.getStatus());
-                    existing.setDueDate(updated.getDueDate());
-                    return ResponseEntity.ok(taskRepository.save(existing));
-                })
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(service.update(id, updated));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        if (!taskRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        taskRepository.deleteById(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }
